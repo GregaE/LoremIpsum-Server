@@ -1,11 +1,9 @@
-import express from 'express';
+import { Router } from 'express';
+import { serveMockData } from './controllers';
 
-const router = express.Router();
+const router = Router();
 
-router.route('/')
-  .get((_, res) => {
-    res.json(require('./config/db.json'));
-  })
+router.get('/mock', serveMockData);
 
 // router.get("", );
 // router.post("", );

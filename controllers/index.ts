@@ -3,7 +3,6 @@ import { Request, Response } from 'express';
 
 export function serveMockData(req: Request, res: Response) {
   try {
-    console.log(db);
     res.status(200).send(db);
   } catch (e) {
     console.log(e);

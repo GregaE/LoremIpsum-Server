@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "prestart": "tsc",
-    "start": "nodemon index"
+    "start": "nodemon ./server/index.js"
   },
   "repository": {
     "type": "git",
@@ -20,6 +20,7 @@
   "homepage": "https://github.com/GregaE/LoremIpsum-Server#readme",
   "dependencies": {
     "@types/cors": "^2.8.12",
+    "cors": "^2.8.5",
     "express": "^4.17.1"
   },
   "devDependencies": {
