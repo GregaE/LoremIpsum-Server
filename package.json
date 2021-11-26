@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "prestart": "tsc",
-    "start": "nodemon index"
+    "start": "nodemon dist/index"
   },
   "repository": {
     "type": "git",
