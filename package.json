@@ -1,0 +1,32 @@
+{
+  "name": "loremipsum-server",
+  "version": "1.0.0",
+  "description": "Lorem Ipsum",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GregaE/LoremIpsum-Server.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GregaE/LoremIpsum-Server/issues"
+  },
+  "homepage": "https://github.com/GregaE/LoremIpsum-Server#readme",
+  "dependencies": {
+    "@types/cors": "^2.8.12",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/node": "^16.11.10",
+    "dotenv": "^10.0.0",
+    "nodemon": "^2.0.15",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.5.2"
+  }
+}
