@@ -6,7 +6,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "prestart": "tsc",
+<<<<<<< HEAD
     "start": "nodemon ./server/index.js"
+=======
+    "start": "nodemon dist/index"
+>>>>>>> 97ad283654a2e5c4af8d753b1f0c972ce9ae3432
   },
   "repository": {
     "type": "git",
