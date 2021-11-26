@@ -1,6 +1,5 @@
 import express from "express";
 import router from "./router";
-import db from "";
 import cors from "cors";
 import PORT from "./config/config";
 
@@ -13,7 +12,6 @@ app
 
 (async function () {
   try {
-    db;
     app.listen(PORT, () => {
       console.log("🍌 server running on port: ", PORT);
     });
