@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.ts"
+    "prestart": "tsc ./",
+    "start": "nodemon index"
   },
   "repository": {
     "type": "git",
@@ -26,6 +27,7 @@
     "@types/node": "^16.11.10",
     "dotenv": "^10.0.0",
     "nodemon": "^2.0.15",
+    "prettier": "2.5.0",
     "ts-node": "^10.4.0",
     "typescript": "^4.5.2"
   }
