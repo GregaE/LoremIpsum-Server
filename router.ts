@@ -1,7 +1,11 @@
 import express from 'express';
-// import db from 'db';
 
 const router = express.Router();
+
+router.route('/')
+  .get((_, res) => {
+    res.json(require('./config/db.json'));
+  })
 
 // router.get("", );
 // router.post("", );
