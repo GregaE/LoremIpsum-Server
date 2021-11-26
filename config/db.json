@@ -3,7 +3,7 @@
   "id": 23456,
   "username": "testuser",
   "email": "some@mail.com",
-  "password": "verymuchencryptedPassword",
+  "password": "verymuchencryptedP4$sword",
   "session_id": "1234agg123136969nice",
   "personal_details": {
     "user_id": 23456,
@@ -37,7 +37,7 @@
   "certificates": [{
     "id": 23456,
     "name": "BMITV",
-    "description": "Best masturbator in the village certificate"
+    "description": "Best maßturbator in the village certificate"
   }, {
     "id": 23456,
     "name": "MTJK",
