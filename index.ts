@@ -1,11 +1,16 @@
 import express from 'express';
 import router from './router';
 import cors from 'cors';
-import PORT from './config/config';
+import dotenv from 'dotenv';
+dotenv.config();
 
 const app = express();
 
-app.use(cors()).use(express.json()).use(router);
+app.use(cors());
+app.use(express.json());
+app.use(router);
+
+const PORT = process.env.SERVER_PORT || 3001;
 
 (async function () {
   try {
