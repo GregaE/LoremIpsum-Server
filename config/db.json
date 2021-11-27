@@ -1,6 +1,5 @@
-
 {
-  "id": 23456,
+  "user_id": 23456,
   "username": "testuser",
   "email": "some@mail.com",
   "password": "verymuchencryptedP4$sword",
@@ -18,84 +17,91 @@
     "country": "LoopyLand",
     "headline": "Resourceful project manager with 10 years of experience."
   },
-  "skills":[
+  "skills": [
     {
       "user_id": 23456,
-      "name":"Welding",
-      "description":"Best welder in the village"
+      "name": "Welding",
+      "description": "Best welder in the village"
     },
     {
       "user_id": 23456,
-      "name":"Eating",
-      "description":"I love eating bananas"
+      "name": "Eating",
+      "description": "I love eating bananas"
     },
     {
       "user_id": 23456,
-      "name":"JerkingOff",
-      "description":"Best massturbator in the galaxy"
-    }],
-  "certificates": [{
-    "id": 23456,
-    "name": "BMITV",
-    "description": "Best maßturbator in the village certificate"
-  }, {
-    "id": 23456,
-    "name": "MTJK",
-    "description": "Another motivational BS"
-  }],
-  "work_experience": [{
-    "id": 23456,
-    "job_title": "CTYOU",
-    "company": "You-gen",
-    "city": "Barcelona",
-    "country": "Espain",
-    "start_date": "date",
-    "end_date": "date",
-    "description": "My role was to conduct the sales process according to the organization’s strategies and procedures. This implied advertising the properties that were up for sale, presenting them to potential customers and finalizing the sales process./nReached 96% of quarterly sales targets throughout my employment with constant promotion and professional property presentations./nTrained a total of 36 junior sales representatives, with 21 of them still currently employed by the organization./nBoosted sales by 9% by editing and revising work procedures with management"
-  }],
-
-  "languages": [{
-    "id": 23456,
-    "name": "German",
-    "level": "A2"
-  },{
-    "id": 23456,
-    "name": "Italian",
-    "level": "A1"
-  },
-  {
-    "id": 23456,
-    "name": "Spanish",
-    "level": "B1"
-  }],
-
+      "name": "JerkingOff",
+      "description": "Best massturbator in the galaxy"
+    }
+  ],
+  "certificates": [
+    {
+      "user_id": 23456,
+      "name": "BMITV",
+      "description": "Best maßturbator in the village certificate"
+    },
+    {
+      "user_id": 23456,
+      "name": "MTJK",
+      "description": "Another motivational BS"
+    }
+  ],
+  "work_experience": [
+    {
+      "user_id": 23456,
+      "job_title": "CTYOU",
+      "company": "You-gen",
+      "city": "Barcelona",
+      "country": "Espain",
+      "start_date": "date",
+      "end_date": "date",
+      "description": "My role was to conduct the sales process according to the organization’s strategies and procedures. This implied advertising the properties that were up for sale, presenting them to potential customers and finalizing the sales process./nReached 96% of quarterly sales targets throughout my employment with constant promotion and professional property presentations./nTrained a total of 36 junior sales representatives, with 21 of them still currently employed by the organization./nBoosted sales by 9% by editing and revising work procedures with management"
+    }
+  ],
+  "languages": [
+    {
+      "user_id": 23456,
+      "name": "German",
+      "level": "A2"
+    },
+    {
+      "user_id": 23456,
+      "name": "Italian",
+      "level": "A1"
+    },
+    {
+      "user_id": 23456,
+      "name": "Spanish",
+      "level": "B1"
+    }
+  ],
   "education": [
     {
-    "id" : 23456,
-    "degree" : "master",
-    "city" : "Barcelona",
-    "country": "Spain",
-    "start_date": "date",
-    "end_date": "date",
-    "description": "Master on peeling bananas"
+      "user_id": 23456,
+      "degree": "master",
+      "city": "Barcelona",
+      "country": "Spain",
+      "start_date": "date",
+      "end_date": "date",
+      "description": "Master on peeling bananas"
     },
     {
-    "id" : 23456,
-    "degree" : "Eugenner",
-    "city" : "Kurlisvkova",
-    "country": "Rasia",
-    "start_date": "date",
-    "end_date": "date",
-    "description": "Technicall Stuff"
+      "user_id": 23456,
+      "degree": "Eugenner",
+      "city": "Kurlisvkova",
+      "country": "Rasia",
+      "start_date": "date",
+      "end_date": "date",
+      "description": "Technicall Stuff"
     },
     {
-    "id" : 23456,
-    "degree" : "School",
-    "city" : "Krakozhia",
-    "country": "Somalia",
-    "start_date": "date",
-    "end_date": "date",
-    "description": "Yalayalayalyalyalay"
+      "user_id": 23456,
+      "degree": "School",
+      "city": "Krakozhia",
+      "country": "Somalia",
+      "start_date": "date",
+      "end_date": "date",
+      "description": "Yalayalayalyalyalay"
     }
   ]
 }
