@@ -4,6 +4,7 @@ import { PrismaClient } from '@prisma/client';
 
 //prisma to make queries to the db
 export const prisma = new PrismaClient();
+
 // for now this serves mock data replace with all commands into the index from all controllers
 export function serveMockData(req: Request, res: Response) {
   try {
