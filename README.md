@@ -9,20 +9,24 @@ User table
 | User  | PUT    | /user/:id | {email,password} to be updated - :id is the user_id to update | updated:  {user_id,username, email,password,session} |                                                       |
 | User  | DELETE | /user     | user_id                                                      | N/A                                                  |                                                       |
 
-Certificates table
+Categories table
 
-| Table        | Method | Endpoint             | Data format to  be sent | Received data                    | Comments                                 |
-| ------------ | ------ | -------------------- | ----------------------- | -------------------------------- | ---------------------------------------- |
-| Certificates | GET    | /certificate/:userId | user_id                 | [{id,name,  description}]        | gets all certificates  of the given user |
-| Certificates | POST   | /certificate         | {name, description}     | {id,  name, description}         |                                          |
-| Certificates | PUT    | /certificate/:id     | {name, description}     | updated  {id, name, description} |                                          |
-| Certificates | DELETE | /certificate/:id     | skill id                | N/A                              |                                          |
+| Table        | Method | Endpoint            | Data format to  be sent | Received data   | Comments                                |
+| ------------ | ------ | ------------------- | ----------------------- | --------------- | --------------------------------------- |
+| Certificates | GET    | /:category/:user_id | user_id                 | [] of objects   | gets all certificates of the given user |
+| Certificates | POST   | /:category          | object to create        | new object      |                                         |
+| Certificates | PUT    | /:category/:id      | Object to update        | updated  object |                                         |
+| Certificates | DELETE | /:category/:id      | skill id                | N/A             |                                         |
 
-Skills table
+The categories could be one of the following strings (camel case sensitive) and the object they return:
 
-| Table  | Method | Endpoint        | Data format to be  sent | Received data                    | Comments                           |
-| ------ | ------ | --------------- | ----------------------- | -------------------------------- | ---------------------------------- |
-| Skills | GET    | /skills/:userId | user_id                 | [{id,name,  description}]        | gets all skills of  the given user |
-| Skills | POST   | /skills         | {name, description}     | {id,  name, description}         |                                    |
-| Skills | PUT    | /skills/:id     | {name, description}     | updated  {id, name, description} |                                    |
-| Skills | DELETE | /skills/:id     | skill id                | N/A                              |                                    |
+| Category string format | Returned object data                                         |
+| ---------------------- | ------------------------------------------------------------ |
+| *certificates*         | {id,name, description}                                       |
+| *skills*               | {id,name, description}                                       |
+| *education*            | {id, degree, school,city,country,start_date,end_date,description} |
+| *languages*            | {id, language_name,level}                                    |
+| *personalDetails*      | {id,email,phone_number,image,first_name,last_name,street,postcode,city,country,headline} |
+| *savedCV*              | {id, saved_cv, date_created}                                 |
+| *workExperience*       | {id,job_title,company,city,country,start_date,end_date,description} |
+
