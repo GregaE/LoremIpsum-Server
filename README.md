@@ -11,12 +11,12 @@ User table
 
 Categories table
 
-| Table        | Method | Endpoint            | Data format to  be sent | Received data   | Comments                                |
-| ------------ | ------ | ------------------- | ----------------------- | --------------- | --------------------------------------- |
-| Certificates | GET    | /:category/:user_id | user_id                 | [] of objects   | gets all certificates of the given user |
-| Certificates | POST   | /:category          | object to create        | new object      |                                         |
-| Certificates | PUT    | /:category/:id      | Object to update        | updated  object |                                         |
-| Certificates | DELETE | /:category/:id      | skill id                | N/A             |                                         |
+| Method | Endpoint            | Data format to  be sent | Received data   | Comments                                |
+| ------ | ------------------- | ----------------------- | --------------- | --------------------------------------- |
+| GET    | /:category/:user_id | user_id                 | [] of objects   | gets all certificates of the given user |
+| POST   | /:category          | object to create        | new object      |                                         |
+| PUT    | /:category/:id      | Object to update        | updated  object |                                         |
+| DELETE | /:category/:id      | skill id                | N/A             |                                         |
 
 The categories could be one of the following strings (camel case sensitive) and the object they return:
 

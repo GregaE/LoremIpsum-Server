@@ -7,7 +7,7 @@ import {
 } from './controllers/userController';
 import {
   createCategoryRecord,
-  deleteRecord,
+  deleteCategoryRecord,
   editCategoryRecord,
   getCategory,
 } from './controllers/categoriesController';
@@ -25,6 +25,6 @@ router.delete('/user/:id', deleteUser);
 router.get('/:category/:user_id', getCategory);
 router.post('/:category', createCategoryRecord);
 router.put('/:category/:id', editCategoryRecord);
-router.delete('/:category/:id', deleteRecord);
+router.delete('/:category/:id', deleteCategoryRecord);
 
 export default router;
