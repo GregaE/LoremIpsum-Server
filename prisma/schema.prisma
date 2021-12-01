@@ -1,5 +1,6 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
+// Author notes: Apparently you cannot split schemas acrros different files so it has to be here as there is no way to export/import from .prisma files
 
 generator client {
   provider = "prisma-client-js"
@@ -26,59 +27,75 @@ model User {
 }
 
 model Skills {
-  id          String @id @default(cuid())
-  name        String @db.VarChar(255)
-  description String @db.Text
-  user        User   @relation(fields: [id], references: [user_id])
+  id          String  @id @default(cuid())
+  name        String  @db.VarChar(255)
+  description String? @db.Text
+  user        User    @relation(fields: [userId], references: [user_id])
+  userId      String
 }
 
 model Certificates {
-  id          String @id @default(cuid())
-  name        String @db.VarChar(255)
-  description String @db.Text
-  user        User   @relation(fields: [id], references: [user_id])
+  id          String  @id @default(cuid())
+  name        String  @db.VarChar(255)
+  description String? @db.Text
+  user        User    @relation(fields: [userId], references: [user_id])
+  userId      String
 }
 
 model Languages {
-  id            String @id @default(cuid())
-  language_name String @db.VarChar(255)
-  level         String @db.Text
-  user          User   @relation(fields: [id], references: [user_id])
+  id            String  @id @default(cuid())
+  language_name String  @db.VarChar(255)
+  level         String? @db.Text
+  user          User    @relation(fields: [userId], references: [user_id])
+  userId        String
 }
 
 model WorkExperience {
-  id          String   @id @default(cuid())
-  job_title   String   @db.VarChar(255)
-  company     String   @db.VarChar(255)
-  city        String   @db.VarChar(255)
-  country     String   @db.VarChar(255)
-  start_date  DateTime @db.Date
-  end_date    DateTime @db.Date
-  description String   @db.Text
-  user        User     @relation(fields: [id], references: [user_id])
+  id          String    @id @default(cuid())
+  job_title   String    @db.VarChar(255)
+  company     String?   @db.VarChar(255)
+  city        String?   @db.VarChar(255)
+  country     String?   @db.VarChar(255)
+  start_date  DateTime? @db.Date
+  end_date    DateTime? @db.Date
+  description String?   @db.Text
+  user        User      @relation(fields: [userId], references: [user_id])
+  userId      String
 }
 
 model Education {
-  id          String   @id @default(cuid())
-  degree      String   @db.VarChar(255)
-  city        String   @db.VarChar(255)
-  country     String   @db.VarChar(255)
-  start_date  DateTime @db.Date
-  end_date    DateTime @db.Date
-  description String   @db.Text
-  user        User     @relation(fields: [id], references: [user_id])
+  id          String    @id @default(cuid())
+  degree      String    @db.VarChar(255)
+  school      String    @db.VarChar(255)
+  city        String?   @db.VarChar(255)
+  country     String?   @db.VarChar(255)
+  start_date  DateTime? @db.Date
+  end_date    DateTime? @db.Date
+  description String?   @db.Text
+  user        User      @relation(fields: [userId], references: [user_id])
+  userId      String
 }
 
 model SavedCV {
   id           String   @id @default(cuid())
   saved_cv     String   @db.Text
   date_created DateTime @default(now()) @db.Date
-  user         User     @relation(fields: [id], references: [user_id])
+  user         User     @relation(fields: [userId], references: [user_id])
+  userId       String
 }
 
 model PersonalDetails {
-  id           String   @id @default(cuid())
-  saved_cv     String   @db.Text
-  date_created DateTime @default(now()) @db.Date
-  user         User     @relation(fields: [id], references: [user_id])
+  id           String  @id @default(cuid())
+  email        String? @db.VarChar(255)
+  phone_number String? @db.VarChar(255)
+  image        String? @db.VarChar(255)
+  first_name   String  @db.VarChar(255)
+  last_name    String? @db.VarChar(255)
+  street       String? @db.VarChar(255)
+  postcode     String? @db.VarChar(255)
+  city         String? @db.VarChar(255)
+  country      String? @db.VarChar(255)
+  headline     String? @db.VarChar(255)
+  user         User    @relation(fields: [userId], references: [user_id])
+  userId       String
 }
