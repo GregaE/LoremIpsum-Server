@@ -1,7 +1,8 @@
 import { Request, Response } from 'express';
 import { prisma } from './index';
 import { categoryValidation } from '../interfaces/categories';
-import { convertToDates } from '../helpers/Helpers';
+import { convertToFeFormat, convertToDbFormat } from '../helpers/Helpers';
+import { Education, WorkExperience } from '.prisma/client';
 
 export async function getCategory(req: Request, res: Response): Promise<void> {
   try {
@@ -12,9 +13,9 @@ export async function getCategory(req: Request, res: Response): Promise<void> {
         where: { userId: user_id },
       });
       const filteredRecords = categoryRecords.map(
-        (cat: { [x: string]: any; userId: string }) => {
+        (cat: { [x: string]: string; userId: string }) => {
           const { userId, ...record } = cat;
-          return record;
+          return convertToFeFormat(record, category);
         }
       );
       res.status(200).send(filteredRecords);
@@ -30,13 +31,13 @@ export async function getCategory(req: Request, res: Response): Promise<void> {
 export async function createCategoryRecord(req: Request, res: Response) {
   try {
     const { category } = req.params;
-    convertToDates(req);
     if (categoryValidation.includes(category)) {
+      const data = convertToDbFormat(req.body, category);
       //@ts-ignore
       const { userId, ...newRecord } = await prisma[category].create({
-        data: req.body,
+        data,
       });
-      res.status(201).send(newRecord);
+      res.status(201).send(convertToFeFormat(newRecord, category));
       return;
     }
     res.status(500).send('Category is not allowed');
@@ -50,14 +51,13 @@ export async function editCategoryRecord(req: Request, res: Response) {
   try {
     const { category, id } = req.params;
     const { userId, ...data } = req.body;
-    convertToDates(data);
     if (categoryValidation.includes(category)) {
       //@ts-ignore
       const { userId, ...updatedRecord } = await prisma[category].update({
         where: { id },
-        data,
+        data: convertToDbFormat(data, category),
       });
-      res.status(201).send(updatedRecord);
+      res.status(201).send(convertToFeFormat(updatedRecord, category));
       return;
     }
     res.status(500).send('Category is not allowed');
