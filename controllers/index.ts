@@ -1,4 +1,4 @@
-const db = require('../config/db.json');
+import db from '../config/db.json';
 import { Request, Response } from 'express';
 
 export function serveMockData(req: Request, res: Response) {
