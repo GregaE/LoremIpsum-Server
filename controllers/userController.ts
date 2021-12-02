@@ -17,6 +17,7 @@ export async function createUser(req: Request, res: Response) {
   const user = await prisma.user.findUnique({
     where: { email: email },
   });
+  console.log(user)
   if (user) {
     return res
       .status(409)
@@ -28,7 +29,6 @@ export async function createUser(req: Request, res: Response) {
       data: { ...req.body, password: bcrypt.hashSync(req.body.password, 10) },
     });
     req.session.uid = newUser.user_id;
-    console.log("this is the session uid " + req.session.uid)
     res.status(201).send(newUser);
   } catch (e) {
     console.log(e);
@@ -42,11 +42,15 @@ export async function login(req: Request, res: Response) {
     const user = await prisma.user.findUnique({
       where: { email: email },
     });
+    console.log(user)
     if (user) {
       const validatedPass = await bcrypt.compare(password, user.password);
       if (!validatedPass) throw new Error();
       req.session.uid = user.user_id;
       res.status(200).send(user);
+    }
+    else {
+      throw new Error()
     }
   } catch (error) {
     res
