@@ -17,7 +17,6 @@ export async function createUser(req: Request, res: Response) {
   const user = await prisma.user.findUnique({
     where: { email: email },
   });
-  console.log(user)
   if (user) {
     return res
       .status(409)
@@ -42,7 +41,6 @@ export async function login(req: Request, res: Response) {
     const user = await prisma.user.findUnique({
       where: { email: email },
     });
-    console.log(user)
     if (user) {
       const validatedPass = await bcrypt.compare(password, user.password);
       if (!validatedPass) throw new Error();
