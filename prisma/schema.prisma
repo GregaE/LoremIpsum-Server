@@ -14,9 +14,9 @@ datasource db {
 model User {
   user_id         String            @id @default(cuid())
   username        String            @db.VarChar(255)
-  email           String            @db.VarChar(255)
+  email           String            @unique @db.VarChar(255)
   password        String            @db.VarChar(255)
-  session         String            @db.VarChar(255)
+  session         String?           @db.VarChar(255)
   personal_detail PersonalDetails[]
   skills          Skills[]
   certificates    Certificates[]
