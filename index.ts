@@ -1,16 +1,37 @@
 import express from 'express';
 import router from './router';
 import cors from 'cors';
-
 import session from 'express-session';
-const SECRET = process.env.SECRET;
-
 import dotenv from 'dotenv';
 dotenv.config();
 
 const app = express();
 
-app.use(cors()).use(express.json()).use(router);
+const corsConfig = {
+  origin: 'http://localhost:3000',
+  credentials: true,
+};
+
+app
+  .use(cors(corsConfig))
+  .use(express.json())
+  .use(
+    session({
+      name: 'sid',
+      saveUninitialized: false,
+      resave: false,
+      // needs to be adjusted to safe secret
+      secret: "thisissosafe",
+      cookie: {
+        maxAge: 1000 * 60 * 60,
+        sameSite: true,
+        httpOnly: false,
+        // should be secure=true in production
+        secure: false,
+      },
+    })
+  )
+  .use(router);
 
 app.use(
   session({
