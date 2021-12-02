@@ -27,3 +27,10 @@ export const categoryValidation = [
   'savedCV',
   'workExperience',
 ];
+
+export interface FEDate extends WorkExperience, Education {
+  beginMonth?: string;
+  beginYear?: string;
+  endMonth?: string;
+  endYear?: string;
+}
