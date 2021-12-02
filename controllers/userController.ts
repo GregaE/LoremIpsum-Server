@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { prisma } from './index';
 import bcrypt from 'bcrypt';
 
+
 declare module "express-session" {
   interface Session {
     uid: string;
@@ -27,6 +28,7 @@ export async function createUser(req: Request, res: Response) {
       data: { ...req.body, password: bcrypt.hashSync(req.body.password, 10) },
     });
     req.session.uid = newUser.user_id;
+    console.log("this is the session uid " + req.session.uid)
     res.status(201).send(newUser);
   } catch (e) {
     console.log(e);

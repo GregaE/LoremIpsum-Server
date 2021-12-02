@@ -15,7 +15,6 @@ const corsConfig = {
 app
   .use(cors(corsConfig))
   .use(express.json())
-  .use(router)
   .use(
     session({
       name: 'sid',
@@ -31,7 +30,8 @@ app
         secure: false,
       },
     })
-  );
+  )
+  .use(router);
 
 const PORT = process.env.SERVER_PORT || 3001;
 
