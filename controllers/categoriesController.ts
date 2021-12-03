@@ -31,7 +31,9 @@ export async function createCategoryRecord(req: Request, res: Response) {
     if (categoryValidation.includes(category)) {
       const { id, ...data } = convertToDbFormat(req.body, category);
       //@ts-ignore
-      const { userId, ...newRecord } = await prisma[category].create({
+      const { userId, ...newRecord }: Categories = await prisma[
+        category
+      ].create({
         data,
       });
       res.status(201).send(convertToFeFormat(newRecord, category));
@@ -50,7 +52,9 @@ export async function editCategoryRecord(req: Request, res: Response) {
     const { userId, ...data } = req.body;
     if (categoryValidation.includes(category)) {
       //@ts-ignore
-      const { userId, ...updatedRecord } = await prisma[category].update({
+      const { userId, ...updatedRecord }: Categories = await prisma[
+        category
+      ].update({
         where: { id },
         data: convertToDbFormat(data, category),
       });
