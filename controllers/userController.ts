@@ -2,8 +2,7 @@ import { Request, Response } from 'express';
 import { prisma } from './index';
 import bcrypt from 'bcrypt';
 
-
-declare module "express-session" {
+declare module 'express-session' {
   interface Session {
     uid: string;
   }
@@ -13,7 +12,7 @@ declare module "express-session" {
 //TODO in get profile and create profile - remove the Password from the object before sending back to the front end. Generate the session ID instead to validate user
 
 export async function createUser(req: Request, res: Response) {
-  const { email, password } = req.body;
+  const { email, password }: { email: string; password: string } = req.body;
   const user = await prisma.user.findUnique({
     where: { email: email },
   });
@@ -37,7 +36,7 @@ export async function createUser(req: Request, res: Response) {
 
 export async function login(req: Request, res: Response) {
   try {
-    const { email, password } = req.body;
+    const { email, password }: { email: string; password: string } = req.body;
     const user = await prisma.user.findUnique({
       where: { email: email },
     });
@@ -46,9 +45,8 @@ export async function login(req: Request, res: Response) {
       if (!validatedPass) throw new Error();
       req.session.uid = user.user_id;
       res.status(200).send(user);
-    }
-    else {
-      throw new Error()
+    } else {
+      throw new Error();
     }
   } catch (error) {
     res
@@ -58,7 +56,7 @@ export async function login(req: Request, res: Response) {
 }
 
 export async function logout(req: Request, res: Response) {
-  req.session.destroy((error) => {
+  req.session.destroy(error => {
     if (error) {
       res
         .status(500)

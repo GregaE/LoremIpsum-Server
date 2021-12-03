@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { prisma } from './index';
-import { categoryValidation } from '../interfaces/categories';
+import { categoryValidation, Categories } from '../interfaces/categories';
 import { convertToFeFormat, convertToDbFormat } from '../helpers/Helpers';
 
 export async function getCategory(req: Request, res: Response): Promise<void> {
@@ -11,12 +11,10 @@ export async function getCategory(req: Request, res: Response): Promise<void> {
       const categoryRecords = await prisma[category].findMany({
         where: { userId: user_id },
       });
-      const filteredRecords = categoryRecords.map(
-        (cat: { [x: string]: string; userId: string }) => {
-          const { userId, ...record } = cat;
-          return convertToFeFormat(record, category);
-        }
-      );
+      const filteredRecords = categoryRecords.map((cat: Categories) => {
+        const { userId, ...record } = cat;
+        return convertToFeFormat(record, category);
+      });
       res.status(200).send(filteredRecords);
       return;
     }

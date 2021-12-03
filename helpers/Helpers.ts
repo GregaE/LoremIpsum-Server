@@ -1,5 +1,5 @@
 import { WorkExperience, Education } from '.prisma/client';
-import { FEDate } from '../interfaces/categories';
+import { FEDate, Categories } from '../interfaces/categories';
 
 export function convertToDbFormat(
   obj: FEDate,
@@ -19,9 +19,9 @@ export function convertToDbFormat(
 }
 
 export function convertToFeFormat(
-  obj: WorkExperience | Education | any,
+  obj: Partial<Categories>,
   category: string
-): FEDate {
+): Partial<FEDate> | Categories {
   if (category !== 'education' && category !== 'workExperience') return obj;
   const { start_date, end_date, ...cleanObj } = obj;
   let beginMonth = '';
@@ -39,6 +39,5 @@ export function convertToFeFormat(
     endMonth = monthFormatter.format(end_date);
     endYear = yearFormatter.format(end_date);
   }
-  //@ts-ignore => check this non-sense TS scream once mvp is done wtf
   return { ...cleanObj, beginMonth, beginYear, endMonth, endYear };
 }

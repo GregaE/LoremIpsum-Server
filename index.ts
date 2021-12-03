@@ -21,7 +21,7 @@ app
       saveUninitialized: false,
       resave: false,
       // needs to be adjusted to safe secret
-      secret: "thisissosafe",
+      secret: process.env.SECRET || '123',
       cookie: {
         maxAge: 1000 * 60 * 60,
         sameSite: true,
