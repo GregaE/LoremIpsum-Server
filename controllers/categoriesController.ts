@@ -2,7 +2,6 @@ import { Request, Response } from 'express';
 import { prisma } from './index';
 import { categoryValidation } from '../interfaces/categories';
 import { convertToFeFormat, convertToDbFormat } from '../helpers/Helpers';
-import { Education, WorkExperience } from '.prisma/client';
 
 export async function getCategory(req: Request, res: Response): Promise<void> {
   try {
@@ -32,7 +31,7 @@ export async function createCategoryRecord(req: Request, res: Response) {
   try {
     const { category } = req.params;
     if (categoryValidation.includes(category)) {
-      const data = convertToDbFormat(req.body, category);
+      const { id, ...data } = convertToDbFormat(req.body, category);
       //@ts-ignore
       const { userId, ...newRecord } = await prisma[category].create({
         data,
