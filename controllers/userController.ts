@@ -26,7 +26,7 @@ export async function createUser(req: Request, res: Response) {
     if (password === '') throw new Error();
     const newUser = await prisma.user.create({
       data: { email: req.body.email, password: bcrypt.hashSync(req.body.password, 10),
-        personal_detail: { create: { first_name: firstName, last_name: lastName }}
+        personal_detail: { create: { first_name: firstName, last_name: lastName, email: email }}
       },
     });
     req.session.uid = newUser.user_id;
