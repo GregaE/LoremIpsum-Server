@@ -2,7 +2,6 @@ import { Request, Response } from 'express';
 import { prisma } from './index';
 import { categoryValidation } from '../interfaces/categories';
 import { convertToFeFormat, convertToDbFormat } from '../helpers/Helpers';
-import { Education, WorkExperience } from '.prisma/client';
 
 export async function getCategory(req: Request, res: Response): Promise<void> {
   try {
