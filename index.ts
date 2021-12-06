@@ -27,13 +27,13 @@ app
         sameSite: true,
         httpOnly: false,
         // should be secure=true in production
-        secure: false,
+        secure: false, 
       },
     })
   )
   .use(router);
 
-const PORT = process.env.SERVER_PORT || 3001;
+const PORT = process.env.SERVER_PORT || 3006;
 
 (async function () {
   try {

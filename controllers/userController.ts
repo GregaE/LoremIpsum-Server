@@ -44,11 +44,8 @@ export async function login(req: Request, res: Response) {
     if (user) {
       const validatedPass = await bcrypt.compare(password, user.password);
       if (!validatedPass) throw new Error();
-      req.session.uid = user.user_id;
-      res.status(200).send(user);
-    }
-    else {
-      throw new Error()
+        req.session.uid = user.user_id;
+        res.status(200).send(user);
     }
   } catch (error) {
     res

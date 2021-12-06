@@ -23,6 +23,7 @@ export async function getCategory(req: Request, res: Response): Promise<void> {
     }
     res.status(500).send('Category is not allowed');
   } catch (e) {
+    console.log('here, error:', e);
     console.log(e);
     res.status(500).send(e);
   }
