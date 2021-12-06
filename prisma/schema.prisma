@@ -12,12 +12,10 @@ datasource db {
 }
 
 model User {
-  user_id         String            @id @default(cuid())
-  username        String            @db.VarChar(255)
-  email           String            @unique @db.VarChar(255)
-  password        String            @db.VarChar(255)
-  session         String?           @db.VarChar(255)
-  personal_detail PersonalDetails[]
+  user_id         String           @id @default(cuid())
+  email           String           @unique @db.VarChar(255)
+  password        String           @db.VarChar(255)
+  personal_detail PersonalDetails?
   skills          Skills[]
   certificates    Certificates[]
   languages       Languages[]
@@ -97,5 +95,5 @@ model PersonalDetails {
   country      String? @db.VarChar(255)
   headline     String? @db.VarChar(255)
   user         User    @relation(fields: [userId], references: [user_id])
-  userId       String
+  userId       String  @unique
 }
