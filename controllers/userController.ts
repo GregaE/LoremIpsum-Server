@@ -2,8 +2,7 @@ import { Request, Response } from 'express';
 import { prisma } from './index';
 import bcrypt from 'bcrypt';
 
-
-declare module "express-session" {
+declare module 'express-session' {
   interface Session {
     uid: string;
   }
@@ -40,7 +39,7 @@ export async function createUser(req: Request, res: Response) {
 
 export async function login(req: Request, res: Response) {
   try {
-    const { email, password } = req.body;
+    const { email, password }: { email: string; password: string } = req.body;
     const user = await prisma.user.findUnique({
       where: { email: email },
       select:{        user_id: true,
@@ -70,7 +69,7 @@ export async function login(req: Request, res: Response) {
 }
 
 export async function logout(req: Request, res: Response) {
-  req.session.destroy((error) => {
+  req.session.destroy(error => {
     if (error) {
       res
         .status(500)

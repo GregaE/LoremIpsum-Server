@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { prisma } from './index';
-import { categoryValidation } from '../interfaces/categories';
+import { categoryValidation, Categories } from '../interfaces/categories';
 import { convertToFeFormat, convertToDbFormat } from '../helpers/Helpers';
 
 export async function getCategory(req: Request, res: Response): Promise<void> {
@@ -11,12 +11,10 @@ export async function getCategory(req: Request, res: Response): Promise<void> {
       const categoryRecords = await prisma[category].findMany({
         where: { userId: user_id },
       });
-      const filteredRecords = categoryRecords.map(
-        (cat: { [x: string]: string; userId: string }) => {
-          const { userId, ...record } = cat;
-          return convertToFeFormat(record, category);
-        }
-      );
+      const filteredRecords = categoryRecords.map((cat: Categories) => {
+        const { userId, ...record } = cat;
+        return convertToFeFormat(record, category);
+      });
       res.status(200).send(filteredRecords);
       return;
     }
@@ -31,9 +29,11 @@ export async function createCategoryRecord(req: Request, res: Response) {
   try {
     const { category } = req.params;
     if (categoryValidation.includes(category)) {
-      const data = convertToDbFormat(req.body, category);
+      const { id, ...data } = convertToDbFormat(req.body, category);
       //@ts-ignore
-      const { userId, ...newRecord } = await prisma[category].create({
+      const { userId, ...newRecord }: Categories = await prisma[
+        category
+      ].create({
         data,
       });
       res.status(201).send(convertToFeFormat(newRecord, category));
@@ -52,7 +52,9 @@ export async function editCategoryRecord(req: Request, res: Response) {
     const { userId, ...data } = req.body;
     if (categoryValidation.includes(category)) {
       //@ts-ignore
-      const { userId, ...updatedRecord } = await prisma[category].update({
+      const { userId, ...updatedRecord }: Categories = await prisma[
+        category
+      ].update({
         where: { id },
         data: convertToDbFormat(data, category),
       });
