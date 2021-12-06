@@ -77,7 +77,7 @@ model Education {
 model SavedCV {
   id           String   @id @default(cuid())
   saved_cv     String   @db.Text
-  date_created DateTime @default(now()) @db.Date
+  date_created DateTime @default(now()) @db.Timestamp
   user         User     @relation(fields: [userId], references: [user_id])
   userId       String
 }
