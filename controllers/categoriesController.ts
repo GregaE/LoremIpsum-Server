@@ -12,7 +12,7 @@ export async function getCategory(req: Request, res: Response): Promise<void> {
         where: { userId: user_id },
       });
       const filteredRecords = categoryRecords.map((cat: Categories) => {
-        const { userId, ...record } = cat;
+        const record = cat;
         return convertToFeFormat(record, category);
       });
       res.status(200).send(filteredRecords);
@@ -31,7 +31,7 @@ export async function createCategoryRecord(req: Request, res: Response) {
     if (categoryValidation.includes(category)) {
       const { id, ...data } = convertToDbFormat(req.body, category);
       //@ts-ignore
-      const { userId, ...newRecord }: Categories = await prisma[
+      const newRecord: Categories = await prisma[
         category
       ].create({
         data,
@@ -52,7 +52,7 @@ export async function editCategoryRecord(req: Request, res: Response) {
     const { userId, ...data } = req.body;
     if (categoryValidation.includes(category)) {
       //@ts-ignore
-      const { userId, ...updatedRecord }: Categories = await prisma[
+      const updatedRecord: Categories = await prisma[
         category
       ].update({
         where: { id },
