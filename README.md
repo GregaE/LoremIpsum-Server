@@ -4,9 +4,9 @@ User table
 
 | Table | Method | Endpoint  | Data format to  be sent                                      | Received data                                        | Comments                                              |
 | ----- | ------ | --------- | ------------------------------------------------------------ | ---------------------------------------------------- | ----------------------------------------------------- |
-| User  | GET    | /user/:id | user_id                                                      | {user_id,username,  email,password,session}          | This will be adapted  to the email once login created |
-| User  | POST   | /user     | {username,email,password} Session will be generated at the backend | {user_id,username,  email,password,session}          |                                                       |
-| User  | PUT    | /user/:id | {email,password} to be updated - :id is the user_id to update | updated:  {user_id,username, email,password,session} |                                                       |
+| User  | GET    | /user/:id | user_id                                                      | {user_id,email,password,session}          | This will be adapted  to the email once login created |
+| User  | POST   | /user     | {email,password} Session will be generated at the backend | {user_id,email,password,session}          |                                                       |
+| User  | PUT    | /user/:id | {email,password} to be updated - :id is the user_id to update | updated:  {user_id,email,password,session} |                                                       |
 | User  | DELETE | /user/:id | user_id                                                      | N/A                                                  |                                                       |
 
 Categories table

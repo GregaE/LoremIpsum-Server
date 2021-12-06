@@ -8,15 +8,11 @@ import {
   WorkExperience,
 } from '.prisma/client';
 
-export interface Categories {
-  certificates: Certificates;
-  skills: Skills;
-  education: Education;
-  languages: Languages;
-  personalDetails: PersonalDetails;
-  savedCV: SavedCV;
-  workExperience: WorkExperience;
-}
+export type Categories = Certificates &
+  Skills &
+  Education &
+  Languages &
+  WorkExperience;
 
 export const categoryValidation = [
   'certificates',
