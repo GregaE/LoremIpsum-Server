@@ -29,8 +29,9 @@ export async function createUser(req: Request, res: Response) {
         personal_detail: { create: { first_name: firstName, last_name: lastName, email: email }}
       },
     });
-    req.session.uid = newUser.user_id;
-    res.status(201).send(newUser);
+    const { user_id } = newUser;
+    req.session.uid = user_id;
+    res.status(201).send({ user_id, personal_detail: { first_name: firstName, last_name: lastName, email }  });
   } catch (e) {
     console.log(e);
     res.status(500).send(e);
@@ -42,12 +43,21 @@ export async function login(req: Request, res: Response) {
     const { email, password } = req.body;
     const user = await prisma.user.findUnique({
       where: { email: email },
+      select:{        user_id: true,
+        password:true,
+        email:true,
+        personal_detail: true},
     });
     if (user) {
       const validatedPass = await bcrypt.compare(password, user.password);
       if (!validatedPass) throw new Error();
       req.session.uid = user.user_id;
-      res.status(200).send(user);
+      const filteredUser = Object.assign({
+        user_id: user.user_id,
+        email: user.email,
+        personal_detail: user.personal_detail
+      });
+      res.status(200).send(filteredUser);
     }
     else {
       throw new Error()
@@ -66,6 +76,7 @@ export async function logout(req: Request, res: Response) {
         .status(500)
         .send({ error, message: 'Could not log out, please try again' });
     } else {
+      console.log('deleting cookie')
       res.clearCookie('sid');
       res.sendStatus(200)
     }

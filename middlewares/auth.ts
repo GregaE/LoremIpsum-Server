@@ -4,6 +4,7 @@ import { prisma } from '../controllers/index';
 
 export async function authMiddleware (req: Request, res: Response, next: NextFunction) {
   try {
+    console.log(req.session.uid)
     const { uid } = req.session;
     const user = await prisma.user.findUnique({
       where: { user_id: uid },
