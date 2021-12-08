@@ -1,6 +1,7 @@
 import {
   Certificates,
   Education,
+  Interview,
   Languages,
   PersonalDetails,
   SavedCV,
@@ -12,7 +13,8 @@ export type Categories = Certificates &
   Skills &
   Education &
   Languages &
-  WorkExperience;
+  WorkExperience &
+  Interview;
 
 export const categoryValidation = [
   'certificates',
@@ -22,6 +24,7 @@ export const categoryValidation = [
   'personalDetails',
   'savedCV',
   'workExperience',
+  'interview',
 ];
 
 export interface FEDate extends WorkExperience, Education {

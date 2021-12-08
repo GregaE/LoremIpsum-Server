@@ -22,6 +22,7 @@ model User {
   work_experience WorkExperience[]
   education       Education[]
   saved_cv        SavedCV[]
+  interviews      Interview[]
 }
 
 model Skills {
@@ -96,4 +97,15 @@ model PersonalDetails {
   headline     String? @db.VarChar(255)
   user         User    @relation(fields: [userId], references: [user_id])
   userId       String  @unique
+}
+
+model Interview {
+  id       String    @id @default(cuid())
+  position String    @db.VarChar(255)
+  company  String?   @db.VarChar(255)
+  link     String?   @db.VarChar(255)
+  notes    String?   @db.Text
+  date     DateTime? @db.Date
+  user     User      @relation(fields: [userId], references: [user_id])
+  userId   String
 }
