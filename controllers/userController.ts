@@ -24,13 +24,22 @@ export async function createUser(req: Request, res: Response) {
   try {
     if (password === '') throw new Error();
     const newUser = await prisma.user.create({
-      data: { email: req.body.email, password: bcrypt.hashSync(req.body.password, 10),
-        personal_detail: { create: { first_name: firstName, last_name: lastName, email: email }}
+      data: {
+        email: req.body.email,
+        password: bcrypt.hashSync(req.body.password, 10),
+        personal_detail: {
+          create: { first_name: firstName, last_name: lastName, email: email },
+        },
       },
     });
     const { user_id } = newUser;
     req.session.uid = user_id;
-    res.status(201).send({ user_id, personal_detail: { first_name: firstName, last_name: lastName, email }  });
+    res
+      .status(201)
+      .send({
+        user_id,
+        personal_detail: { first_name: firstName, last_name: lastName, email },
+      });
   } catch (e) {
     console.log(e);
     res.status(500).send(e);
@@ -42,10 +51,12 @@ export async function login(req: Request, res: Response) {
     const { email, password }: { email: string; password: string } = req.body;
     const user = await prisma.user.findUnique({
       where: { email: email },
-      select:{        user_id: true,
-        password:true,
-        email:true,
-        personal_detail: true},
+      select: {
+        user_id: true,
+        password: true,
+        email: true,
+        personal_detail: true,
+      },
     });
     if (user) {
       const validatedPass = await bcrypt.compare(password, user.password);
@@ -54,12 +65,11 @@ export async function login(req: Request, res: Response) {
       const filteredUser = Object.assign({
         user_id: user.user_id,
         email: user.email,
-        personal_detail: user.personal_detail
+        personal_detail: user.personal_detail,
       });
       res.status(200).send(filteredUser);
-    }
-    else {
-      throw new Error()
+    } else {
+      throw new Error();
     }
   } catch (error) {
     res
@@ -75,9 +85,9 @@ export async function logout(req: Request, res: Response) {
         .status(500)
         .send({ error, message: 'Could not log out, please try again' });
     } else {
-      console.log('deleting cookie')
+      console.log('deleting cookie');
       res.clearCookie('sid');
-      res.sendStatus(200)
+      res.sendStatus(200);
     }
   });
 }

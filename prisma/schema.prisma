@@ -12,9 +12,9 @@ datasource db {
 }
 
 model User {
-  user_id         String            @id @default(cuid())
-  email           String            @unique @db.VarChar(255)
-  password        String            @db.VarChar(255)
+  user_id         String           @id @default(cuid())
+  email           String           @unique @db.VarChar(255)
+  password        String           @db.VarChar(255)
   personal_detail PersonalDetails?
   skills          Skills[]
   certificates    Certificates[]
@@ -22,6 +22,7 @@ model User {
   work_experience WorkExperience[]
   education       Education[]
   saved_cv        SavedCV[]
+  interviews      Interview[]
 }
 
 model Skills {
@@ -77,7 +78,7 @@ model Education {
 model SavedCV {
   id           String   @id @default(cuid())
   saved_cv     String   @db.Text
-  date_created DateTime @default(now()) @db.Date
+  date_created DateTime @default(now()) @db.Timestamp
   user         User     @relation(fields: [userId], references: [user_id])
   userId       String
 }
@@ -95,5 +96,16 @@ model PersonalDetails {
   country      String? @db.VarChar(255)
   headline     String? @db.VarChar(255)
   user         User    @relation(fields: [userId], references: [user_id])
-  userId       String
+  userId       String  @unique
+}
+
+model Interview {
+  id       String    @id @default(cuid())
+  position String    @db.VarChar(255)
+  company  String?   @db.VarChar(255)
+  link     String?   @db.VarChar(255)
+  notes    String?   @db.Text
+  date     DateTime? @db.Date
+  user     User      @relation(fields: [userId], references: [user_id])
+  userId   String
 }

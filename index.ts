@@ -33,7 +33,7 @@ app
   )
   .use(router);
 
-const PORT = process.env.SERVER_PORT || 3006;
+const PORT = process.env.SERVER_PORT || 3001;
 
 (async function () {
   try {
